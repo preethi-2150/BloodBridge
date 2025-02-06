@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BloodBridge - Lifesaving Resources</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #0056b3;
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: #007bff;
+        }
+
+        section {
+            padding: 20px;
+            display: none; /* Hidden by default */
+        }
+
+        section.active {
+            display: block; /* Active section */
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto 20px auto;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+
+        input::placeholder {
+            color: #6c757d;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .dashboard {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .dashboard ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .dashboard li {
+            padding: 10px;
+            border-bottom: 1px solid #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BloodBridge: Lifesaving Resources</h1>
+    </header>
+    <nav>
+        <a href="#" onclick="showSection('emergency')">Emergency Request</a>
+        <a href="#" onclick="showSection('donor')">Donor Management</a>
+        <a href="#" onclick="showSection('inventory')">Blood Bank Inventory</a>
+    </nav>
+
+    <!-- Emergency Blood Request -->
+    <section id="emergency" class="active">
+        <h2>Emergency Blood Request</h2>
+        <form id="emergencyForm">
+            <label for="bloodType">Blood Type:</label>
+            <input 
+                type="text" 
+                id="bloodType" 
+                placeholder="Enter the blood group (e.g., A+, O-)" 
+                pattern="^(A|B|AB|O)[+-]$" 
+                title="Enter a valid blood group (A+, O-, etc.)" 
+                required>
+
+            <label for="quantity">Quantity (units):</label>
+            <input 
+                type="number" 
+                id="quantity" 
+                placeholder="Enter quantity in units (e.g., 2)" 
+                min="1" 
+                required>
+
+            <label for="location">Location:</label>
+            <input 
+                type="text" 
+                id="location" 
+                placeholder="Enter location (e.g., City Hospital)" 
+                required>
+
+            <button type="button" onclick="submitEmergencyRequest()">Submit Request</button>
+        </form>
+    </section>
+
+    <!-- Donor Management -->
+    <section id="donor">
+        <h2>Donor Management</h2>
+        <div class="dashboard">
+            <h3>Upcoming Blood Drives</h3>
+            <ul>
+                <li>Blood Drive at City Hall - December 5, 2024</li>
+                <li>Community Center Drive - December 12, 2024</li>
+            </ul>
+            <button type="button" onclick="scheduleDonation()">Schedule Donation</button>
+        </div>
+    </section>
+
+    <!-- Blood Bank Inventory -->
+    <section id="inventory">
+        <h2>Blood Bank Inventory</h2>
+        <form id="inventoryForm">
+            <label for="bloodTypeInventory">Blood Type:</label>
+            <input type="text" id="bloodTypeInventory" required>
+
+            <label for="stockLevel">Stock Level (units):</label>
+            <input type="number" id="stockLevel" required>
+
+            <button type="button" onclick="updateInventory()">Update Inventory</button>
+        </form>
+    </section>
+
+    <script>
+        // Function to show specific section
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Emergency request submission
+        async function submitEmergencyRequest() {
+            const bloodType = document.getElementById('bloodType').value;
+            const quantity = document.getElementById('quantity').value;
+            const location = document.getElementById('location').value;
+
+            alert(`Emergency request for ${bloodType} (${quantity} units) at ${location} submitted successfully.`);
+            // Add API logic here
+        }
+
+        // Schedule donation
+        function scheduleDonation() {
+            alert('Donation scheduled successfully.');
+            // Add scheduling logic here
+        }
+
+        // Inventory update
+        async function updateInventory() {
+            alert('Inventory updated successfully.');
+            // Add API logic here
+        }
+    </script>
+</body>
+</html>
